@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <h3 class="title">Virtual Machines</h3>
+  <table class="table table-bordered" data-toggle="table">
+    <thead>
+      <tr>
+        <th>VM Name</th>
+        <th>State</th>
+        <th>Guest OS</th>
+        <th>Memory size</th>
+        <th>Number of CPUs</th>
+        <th>UUID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for vm in list_vms['data'] %}
+      <tr>
+        <td>{{ list_vms['data'][vm]['Name'] }}</td>
+        {% if 'running' in list_vms['data'][vm]['State'] %}
+        <td class="font-green">running</td>
+        {% else %}
+        <td class="font-red">stopped</td>
+        {% endif %}
+        <td>{{ list_vms['data'][vm]['Guest OS'] }}</td>
+        <td>{{ list_vms['data'][vm]['Memory size'] }}</td>
+        <td>{{ list_vms['data'][vm]['Number of CPUs'] }}</td>
+        <td>{{ list_vms['data'][vm]['UUID'] }}</td>
+        <td>
+          {% if 'running' in list_vms['data'][vm]['State'] %}
+          <i class="fa-solid fa-circle-down font-red" style="margin-right:10px;cursor: pointer;" vm-name="{{list_vms['data'][vm]['Name']}}" onclick="javascript:stop_vm(event)"></i>
+          {% else %}
+          <i class="fa-solid fa-circle-up font-green" style="margin-right:10px;cursor: pointer;" vm-name="{{list_vms['data'][vm]['Name']}}" onclick="javascript:start_vm(event)"></i>
+          <i class="fa-solid fa-trash" style="cursor: pointer;margin-right:10px" vm-name="{{list_vms['data'][vm]['Name']}}" onclick="javascript:destroy_vm(event)"></i>
+          {% endif %}
+          <i class="fa-solid fa-bolt" style="cursor: pointer;margin-right:10px" vm-name="{{list_vms['data'][vm]['Name']}}" onclick="javascript:openBootLog(event)"></i>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+function stop_vm(e) {
+  let target = e.target;
+  let vm_name = target.getAttribute('vm-name')
+  if(confirm('Do you really to stop ' + vm_name + '  vm?')) {
+    window.location = '/home?list_vms&stop_vm=' + vm_name
+  }
+}
+function start_vm(e) {
+  let target = e.target;
+  let vm_name = target.getAttribute('vm-name')
+  window.location = '/home?list_vms&start_vm=' + vm_name
+}
+function destroy_vm(e) {
+  let target = e.target;
+  let vm_name = target.getAttribute('vm-name')
+  if(confirm('Do you want to destroy ' + vm_name + '  vm?')) {
+    window.location = '/home?list_vms&destroy_vm=' + vm_name
+  }
+}
+function openBootLog(e) {
+  let target = e.target;
+  let vm_name = target.getAttribute('vm-name')
+  window.location = 'home?create_vm&vm_name=' + vm_name
+}
+function openConsoleLog(e) {
+  let target = e.target;
+  let vm_name = target.getAttribute('vm-name')
+  window.location = 'home?console_log&vm_name=' + vm_name
+}
+</script>

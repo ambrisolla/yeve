@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>yeve</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="/static/index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <div id="root">
+        <div class="login-box box" style="padding-bottom:15px">
+            <form action="?login" method="POST">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="access_key" placeholder="Access key">
+                    <button class="btn btn-outline-primary" type="submit">Enter</button>
+                </div>
+            </form>
+            {% if login == False %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Access denied!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% elif login == True %}
+              <script>window.location = '/home'</script>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

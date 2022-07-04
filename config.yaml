@@ -1,0 +1,28 @@
+yeve_access_token: key
+yeve_bind_address: 0.0.0.0
+yeve_port: 9090
+vagrant_templates_storage: /srv/vagrant
+vagrant_boxes:
+  rockylinux/8:
+    title: Rocky 8
+  centos/8:
+    title: Centos 8
+  centos/7:
+    title: Centos 7
+  oraclelinux/8:
+    box_url: https://oracle.github.io/vagrant-projects/boxes/oraclelinux/8.json
+    title: Oracle Linux 8
+  ubuntu/xenial64:
+    title: Ubuntu 16.04
+  ubuntu/bionic64:
+    title: Ubuntu 18.04
+  ubuntu/focal64:
+    title: Ubuntu 20.04
+  ubuntu/jammy64:
+    title: Ubuntu 22.04
+  debian/bullseye64:
+    title: Debian 11
+  debian/contrib-buster64:
+    title: Debian 10
+  debian/stretch64:
+    title: Debian 9

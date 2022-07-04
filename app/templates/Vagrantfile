@@ -1,0 +1,44 @@
+Vagrant.configure("2") do |config|
+  config.vm.hostname = "{{vm_name}}"
+  config.vm.box = "{{box}}"
+  config.vm.network "public_network", ip: "{{ip}}", bridge: "{{nic}}"
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+  {% if box_url != '' %}
+  config.vm.box_url = "{{ box_url }}"
+  {% endif %}
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "{{vm_name}}"
+    vb.memory = "{{memory}}"
+    vb.cpus = "{{cpus}}"
+  end
+  config.vm.post_up_message = "script_finished"
+  
+
+  $script = <<-SCRIPT
+    echo "==> Installing curl..."
+    [[ -f /usr/bin/apt ]] && apt update && apt install curl -y;
+    [[ -f /usr/bin/yum ]] && yum install curl -y
+    echo "==> Installing Salt-Minion"
+    curl -fsSL https://bootstrap.saltproject.io | sh
+    echo "master: {{salt_master}}" > /etc/salt/minion.d/master.conf
+    systemctl restart salt-minion
+  SCRIPT
+
+  $script2 = <<-SCRIPT
+    echo "==> Enabling root login..."
+    sed -i "/PermitRootLogin/d;/passwordauthentication/d" /etc/ssh/sshd_config
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+    mkdir -p /root/.ssh/
+    echo "{{ ssh_public_key  }}" >> /root/.ssh/authorized_keys
+    systemctl restart sshd
+  SCRIPT
+
+  {% if salt == 'yes' -%}
+    config.vm.provision "shell", inline: $script
+  {% endif -%}
+
+  {% if enable_root == 'yes' -%}
+    config.vm.provision "shell", inline: $script2
+  {% endif -%}
+  
+end

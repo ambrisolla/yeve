@@ -1,0 +1,97 @@
+html, body {
+  background:#f8f8f8;
+}
+
+#root {
+  width:100vw;
+  padding:100px 60px;
+}
+.box {
+  background:#FFF;
+  box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+  border-radius:8px;
+}
+
+:root {
+  --line: #ebebeb;
+  --main-color:rgb(7, 81, 150);
+  --link-not-active:#999;
+  --link-active:#333;
+}
+
+/* menu */
+#menu {
+  border-bottom:solid 1px var(--line);
+  margin:0px;
+  padding:0px 60px;
+  display:table;
+  position: fixed;
+  top:0px;
+  left:0px;
+  background:#FFF;
+
+}
+#menu > ul:first-child {
+  margin:0px;
+  padding:0px;
+  display:table;
+  float:left;
+}
+#menu > ul:first-child > li {
+  list-style: none;
+  display: inline;
+}
+#menu > ul:first-child > li > a {
+  float:left;
+  text-decoration: none;
+  padding:10px 20px;
+  color:var(--link-not-active)
+}
+#menu > ul:first-child > li > a.active {
+  color:var(--link-active)
+}
+#menu > ul:first-child > li:first-child > a {
+  color:var(--main-color);
+}
+#menu > ul:last-child {
+  margin:0px;
+  padding:0px;
+  display:table;
+  float:right;
+}
+#menu > ul:last-child > li {
+  list-style: none;
+  display: inline;
+}
+#menu > ul:last-child > li > a {
+  float:left;
+  text-decoration: none;
+  padding:10px 20px;
+}
+
+/* body */
+.title {
+  color:#333;
+  border-bottom:1px var(--line) solid;
+  margin-bottom:40px;
+  padding-bottom:10px;
+}
+.font-green {
+  color:rgb(78, 202, 130);
+}
+.font-red {
+  color:rgb(202, 78, 88);
+}
+
+/* tables */
+table {
+  background:#FFF;
+}
+
+
+/* form */
+.form-label {
+  color:rgba(0,0,0,0.7);
+  font-size:0.8em;
+  margin:3px 0px;
+}

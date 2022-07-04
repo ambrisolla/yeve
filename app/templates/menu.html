@@ -1,0 +1,19 @@
+<div class="container-fluid" id="menu">
+  <ul>
+    <li><a><i class="fa-solid fa-computer"></i></a></li>
+    {% if 'list_vms' in request.args %}
+    {% set list_vms_class='active' %}
+    {% endif %}
+    <li><a href="?list_vms" id="list_vms" class="{{ list_vms_class }}">List Virtual Machines</a></li>
+    {% if 'new_vm' in request.args %}
+    {% set new_vm_class='active' %}
+    {% endif %}
+    <li><a href="?new_vm" id="new_vm" class="{{ new_vm_class }}">Create a new Virtual Machine</a></li>
+  </ul>
+  <ul>
+    <li><a href=""><i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
+  </ul>
+</div>
+<script>
+
+</script>

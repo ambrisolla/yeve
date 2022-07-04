@@ -1,0 +1,42 @@
+<style>
+  pre {
+    background: #000;
+    color:#FFF;
+    border: solid 1px #999;
+    padding: 10px;
+    height: 50vh;
+  }
+</style>
+
+<div class="container-fluid">
+  <h3 class="title">Virtual Machine boot console</h3>
+  <div>
+    <h6 id="step"></h6>
+  </div>
+  <p></p>
+  <pre id="console-output">
+  </pre>
+</div>
+
+<script>
+  function console_output() {
+    let url = window.location.origin
+    fetch(url + '/vagrant/console_log?vm_name={{ vm_name }}', {
+      method: 'GET'
+    })
+      .then(function (data) {
+        return data.json()
+      })
+      .then(function (data) {
+        // Output
+        let console_output = document.getElementById('console-output')
+        console_output.innerHTML = data['data']
+        console_output.scrollBy(0, 9999999)
+      })
+
+  }
+
+  var output_timer = setInterval(() => {
+    console_output()
+  }, 1000)
+</script>
