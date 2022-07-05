@@ -59,7 +59,7 @@ class Vagrant:
         os.chdir(f'{self.vagrant_dir}/{vm_name}/')
         os.system(f'rm -f {self.vagrant_dir}/{vm_name}/{vm_name}*.log')
         os.system(f'vagrant init 2> /dev/null 2> /dev/null')
-        os.system(f'vagrant up 2> {self.vagrant_dir}/{vm_name}/{vm_name}_error.log  \
+        os.system(f'vagrant up --provider virtualbox 2> {self.vagrant_dir}/{vm_name}/{vm_name}_error.log  \
           > {self.vagrant_dir}/{vm_name}/{vm_name}.log &')
       return True
     except Exception as err:
