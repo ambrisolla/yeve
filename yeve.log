@@ -1,5 +1,10 @@
  * Running on all addresses.
    WARNING: This is a development server. Do not use it in a production deployment.
  * Running on http://192.168.0.109:9090/ (Press CTRL+C to quit)
-   Use a production WSGI server instead.
- * Debug mode: off
+192.168.0.109 - - [21/Jul/2022 13:01:55] "GET /home?list_vms HTTP/1.1" 200 -
+192.168.0.109 - - [21/Jul/2022 13:01:55] "GET /static/home.css HTTP/1.1" 200 -
+192.168.0.109 - - [21/Jul/2022 13:01:55] "[31m[1mGET /favicon.ico HTTP/1.1[0m" 400 -
+192.168.0.109 - - [21/Jul/2022 13:02:08] "GET /home?list_vms&stop_vm=unison-02 HTTP/1.1" 200 -
+192.168.0.109 - - [21/Jul/2022 13:02:08] "[36mGET /static/home.css HTTP/1.1[0m" 304 -
+192.168.0.109 - - [21/Jul/2022 14:55:36] "GET /home?new_vm HTTP/1.1" 200 -
+192.168.0.109 - - [21/Jul/2022 14:55:36] "[36mGET /static/home.css HTTP/1.1[0m" 304 -

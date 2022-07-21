@@ -26,12 +26,14 @@ def start():
       print('YEVE already is running!')
       sys.exit(0)
     else:
-      configs                 = load_configs()
-      yeve_bind_address       = configs['yeve_bind_address']
-      yeve_port               = configs['yeve_port']
-      os.environ['FLASK_APP'] = f'{fullpath}/app/app.py'
-      cmd                     = f'flask run --host {yeve_bind_address} --port {yeve_port} \
-                                > {fullpath}/yeve.log 2> {fullpath}/yeve.log &'
+      configs                              = load_configs()
+      yeve_bind_address                    = configs['yeve_bind_address']
+      yeve_port                            = configs['yeve_port']
+      os.environ['FLASK_APP']              = f'{fullpath}/app/app.py'
+      os.environ['YEVE_ACCESS_KEY']        = configs['yeve_access_token']
+      os.environ['YEVE_TEMPLATES_STORAGE'] = configs['yeve_access_token']
+      cmd                                  = f'flask run --host {yeve_bind_address} --port {yeve_port} \
+                                            > {fullpath}/yeve.log 2> {fullpath}/yeve.log &'
       os.system(cmd)
   except Exception as err:
     print(f'error: {str(err)}')
