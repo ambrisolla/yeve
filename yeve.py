@@ -31,7 +31,7 @@ def start():
       yeve_port                            = configs['yeve_port']
       os.environ['FLASK_APP']              = f'{fullpath}/app/app.py'
       os.environ['YEVE_ACCESS_KEY']        = configs['yeve_access_token']
-      os.environ['YEVE_TEMPLATES_STORAGE'] = configs['yeve_access_token']
+      os.environ['YEVE_TEMPLATES_STORAGE'] = configs['vagrant_templates_storage']
       cmd                                  = f'flask run --host {yeve_bind_address} --port {yeve_port} \
                                             > {fullpath}/yeve.log 2> {fullpath}/yeve.log &'
       os.system(cmd)

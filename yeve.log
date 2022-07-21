@@ -8,3 +8,4 @@
 192.168.0.109 - - [21/Jul/2022 13:02:08] "[36mGET /static/home.css HTTP/1.1[0m" 304 -
 192.168.0.109 - - [21/Jul/2022 14:55:36] "GET /home?new_vm HTTP/1.1" 200 -
 192.168.0.109 - - [21/Jul/2022 14:55:36] "[36mGET /static/home.css HTTP/1.1[0m" 304 -
+192.168.0.109 - - [21/Jul/2022 15:05:06] "POST /home?create_vm HTTP/1.1" 200 -
