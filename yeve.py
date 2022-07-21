@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 import re
 import sys
@@ -38,7 +39,6 @@ def start():
 
 def stop():
   try:
-    # get status
     s = status()
     if not s['yeve_status']:
       print('YEVE is not running!')
